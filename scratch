@@ -21,6 +21,7 @@ Server
     Identify by username, or just public key?
     Past received/sent messages?
     Messages queued so they can be retrieved even if recipient is offline
+  Protect against DOS?
 
 Where are past messages stored?
   On client?
