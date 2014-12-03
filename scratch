@@ -1,0 +1,10 @@
+Client
+  End-to-end encryption: sender's client encrypts message for reciever, server doesn't see plaintext
+  PGP-like protocol- asymmetric encryption to exchange key for symmetric encryption
+  Also arrange symmetric key for server, and use it to encrypt meta-data about messages, like recipient
+  GUI or CLI? If in terminal, use ncurses? If graphical, what library?
+
+
+Server
+  Minimum, relays messages from client to client
+  How much do we trust the server? Could be a key server, otherwise we will have to enter other users' public keys into the client manually
