@@ -10,6 +10,14 @@ Client
   Rayyan you know more about this than I do, which symmetric encryption algorithm?
   Also arrange symmetric key for server, and use it to encrypt meta-data about messages, like recipient
   GUI or CLI? If in terminal, use ncurses? If graphical, what library?
+  Compress messages first?
+  Send files
+
+"Session"
+  How often is a session key generated?
+  Once per message- makes encrypted messages big but more straightforward to do offline messages
+    Otherwise need some way to refer to which key is used for a particular message
+  Every time a client starts up?
 
 Server
   At minimum, relays messages from client to client
