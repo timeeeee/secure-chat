@@ -1,10 +1,33 @@
+We gotsta read about protocols!
+
 Client
-  End-to-end encryption: sender's client encrypts message for reciever, server doesn't see plaintext
+  End-to-end encryption: sender's client encrypts message for reciever, server never sees plaintext
   PGP-like protocol- asymmetric encryption to exchange key for symmetric encryption
+    Maybe
+      For each message, generate a symmetric encryption key (session key), encrypt the message with the key
+      Encrypt session key with recipients public key
+      Sign so the remote client knows it's from you? Sign a hash?
+  Rayyan you know more about this than I do, which symmetric encryption algorithm?
   Also arrange symmetric key for server, and use it to encrypt meta-data about messages, like recipient
   GUI or CLI? If in terminal, use ncurses? If graphical, what library?
 
-
 Server
-  Minimum, relays messages from client to client
-  How much do we trust the server? Could be a key server, otherwise we will have to enter other users' public keys into the client manually
+  At minimum, relays messages from client to client
+  What library to use for networking? sockets?
+  How much do we trust the server? Server signs communications so we know it's the right one
+    Could be a key server, provide list of usernames to send messages to
+    ... but then server could perform man in the middle attack, alternatively verify keys manually
+  What information does server store about users?
+    Identify by username, or just public key?
+    Past received/sent messages?
+    Messages queued so they can be retrieved even if recipient is offline
+
+Where are past messages stored?
+  On client?
+    Re-encrypt so that we don't have to save symmetric encryption keys from past sessions?
+  On server?
+    Client can download past messages again if switching computers
+      (but, must have the encryption key stored as well)
+    Sending a message when offline could be stored in the same way- client just checks for changes when starting up
+      similar to version control (git, svn) client only edit sent, server only edits received
+      only look for new messages more recent than last fetch: new_messages = server.fetch(after_time)
