@@ -1,14 +1,7 @@
 import socket
 
-# import re
+response = "The server send this sentence as a response."
 
-header = "HTTP/1.0 200 OK\nContent-Type: text/html\n\n"
-
-htmlFile = open("index.html")
-htmlPage = htmlFile.read()
-
-response = header + htmlPage
- 
 # Standard socket stuff:
 host = ''  # do we need socket.gethostname() ?
 port = 53421
@@ -21,8 +14,9 @@ print "going to enter loop"
 while True:
     csock, caddr = sock.accept()
     print "Connection from: " + `caddr`
-    req = csock.recv(1024)  # get the request, 1kB max
+    req = csock.recv(1024)  # get the request, 1KB max
     print req
+    print "type: {}".format(type(req))
     csock.sendall(response)
     csock.close()
 '''
