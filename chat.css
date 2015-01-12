@@ -1,0 +1,9 @@
+form#login {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+div#chat {
+    display: none;
+}
