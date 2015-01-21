@@ -1,24 +1,20 @@
-We gotsta read about protocols!
-
 Messages
-    Message compressed, then encrypted with a symmetric key unique for this message
+    compress messages first to remove patterns (use zlib?)
+    encrypt with unique key for this message
+        Rayyan, you know more about this than I do- what kind of encryption?
     some identifier of sender
-        username?
-        public key?
-        encrypted so that 
-    symmetric key encrypted with recipients public key
+        public key? rather than username, because we will retrieve a list of who's who anyways (and a name might change?)
+        encrypted, so that server doesn't keep a record of who's communicating with who
+    symmetric key encrypted with recipient's public key (use rsa)
     crc? (use zlib.crc32?) 
-    timestamp? (encypted also?)
-    hash of message signed with senders private key?
+    timestamp? (encypted also? part of original message?)
+    signature? (hash of message signed with senders private key?)
 
 Client
     End-to-end encryption: sender's client encrypts message for reciever, server never sees plaintext
-    Rayyan you know more about this than I do, which symmetric encryption algorithm?
-    rsa for asymmetric encryption
-    GUI or CLI? If in terminal, use ncurses? If graphical, what library?
-    Compress messages first
-        removes patterns that make it easier to break encryption
-        use zlib
+    GUI or CLI?
+        If in terminal, use ncurses? If graphical, what library?
+        web interface?
 
 Server
     methods (authenticate user before each? could send random number for them to sign)
@@ -26,29 +22,27 @@ Server
             send back list of users
             and current status? logged on or no- keep track of last time each user requested other users
         get messages
-            return list of messages- get confirmation (checksum?) before deleting
+            return list of messages
+            in time range? only messages since last request?
         send message
-            get confirmation (checksum?)
+            get confirmation? (checksum?)
     use sockets for networking
     users added manually to the server?
-    maintain queue of messages addressed to each user
-        dictionary with usernames as keys
-    At minimum, relays messages from client to client
     How much do we trust the server? Server signs communications so we know it's the right one
         Could be a key server, provide list of usernames to send messages to
         ... but then server could perform man in the middle attack, alternatively verify keys manually
     What information does server store about users?
         Identify by username, or just public key?
-        Past received/sent messages?
-        Messages queued so they can be retrieved even if recipient is offline
-    Protect against DOS?
+        Past sent/received messages
+        
+    Protect against DOS? (Rayyan: how?)
 
 Where are past messages stored?
     On client?
         Re-encrypt so that we don't have to save symmetric encryption keys from past sessions?
-        This could be implemented later, easy
+        We could leave this out and implement it later, easy
     On server
-        Client can download past messages again if switching computers
+        Client can download old messages from server if not stored locally
         Sending a message when offline could be stored in the same way- client just checks for changes when starting up
             similar to version control (git, svn) client only edits sent, server only edits received (could use python git library!)
             more simply, only look for new messages more recent than last fetch: new_messages = server.fetch(after_time)
