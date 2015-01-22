@@ -27,6 +27,8 @@ Server
         send message
             get confirmation? (checksum?)
     use sockets for networking
+        or use pre-existing tool- django (high learning curve), wsgi, flask?
+    store info in variables and back up to files, or use a database?
     users added manually to the server?
     How much do we trust the server? Server signs communications so we know it's the right one
         Could be a key server, provide list of usernames to send messages to
