@@ -12,9 +12,10 @@ Messages
 
 Client
     End-to-end encryption: sender's client encrypts message for reciever, server never sees plaintext
-    GUI or CLI?
-        If in terminal, use ncurses? If graphical, what library?
-        web interface?
+    interface
+        GUI
+        CLI (ncurses?)
+        web interface
 
 Server
     methods (authenticate user before each? could send random number for them to sign)
@@ -26,8 +27,11 @@ Server
             in time range? only messages since last request?
         send message
             get confirmation? (checksum?)
-    use sockets for networking
-        or use pre-existing tool- django (high learning curve), wsgi, flask?
+    What library for networking?
+        sockets
+        django (high learning curve)
+        wsgi
+        flask
     store info in variables and back up to files, or use a database?
     users added manually to the server?
     How much do we trust the server? Server signs communications so we know it's the right one
@@ -35,8 +39,7 @@ Server
         ... but then server could perform man in the middle attack, alternatively verify keys manually
     What information does server store about users?
         Identify by username, or just public key?
-        Past sent/received messages
-        
+        Past sent/received messages        
     Protect against DOS? (Rayyan: how?)
 
 Where are past messages stored?
