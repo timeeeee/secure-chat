@@ -53,3 +53,10 @@ Where are past messages stored?
             more simply, only look for new messages more recent than last fetch: new_messages = server.fetch(after_time)
             All of this makes pattern matching possible for anyone with access to the server
 
+From Rayyan:
+  -Message Format: [timestamp] username : message
+  -Way to encrypt it: take the whole message format and follow the procedure below:
+	([timestamp] username : message) -> hash -> append w/ digital signature (hash signed with sender's private key) -> send it off!
+	-Question: The server doesn't see plaintext, so this must mean that the client does the encrypting, yes?
+  -Current progress (2/3/2015): Refreshing memory on digital signatures, tutorial on Javascript, contemplation on outline. 
+
