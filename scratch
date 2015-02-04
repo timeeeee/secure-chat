@@ -19,9 +19,8 @@ Server
         get users
             send back list of users
             and current status? logged on or no- keep track of last time each user requested other users
-        get messages
-            return list of messages
-            in time range? only messages since last request?
+        get new messages
+        get previously read messages
         send message
             get confirmation? (checksum?)
     What library for networking?
@@ -32,17 +31,6 @@ Server
     How much do we trust the server? Server signs communications so we know it's the right one
         Could be a key server, provide list of usernames to send messages to
         ... but then server could perform man in the middle attack, alternatively verify keys manually
-
-Where are past messages stored?
-    On client?
-        Re-encrypt so that we don't have to save symmetric encryption keys from past sessions?
-        We could leave this out and implement it later, easy
-    On server
-        Client can download old messages from server if not stored locally
-        Sending a message when offline could be stored in the same way- client just checks for changes when starting up
-            similar to version control (git, svn) client only edits sent, server only edits received (could use python git library!)
-            more simply, only look for new messages more recent than last fetch: new_messages = server.fetch(after_time)
-            All of this makes pattern matching possible for anyone with access to the server
 
 From Rayyan:
   -Message Format: [timestamp] username : message
