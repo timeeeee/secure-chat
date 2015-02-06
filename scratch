@@ -1,36 +1,35 @@
 Messages
-    
-    compress messages first to remove patterns (use zlib?)
-    encrypt with unique key for this message
-        Rayyan, you know more about this than I do- what kind of encryption?
-    some identifier of sender
-        public key? rather than username, because we will retrieve a list of who's who anyways (and a name might change?)
-        encrypted, so that server doesn't keep a record of who's communicating with who
-    symmetric key encrypted with recipient's public key (use rsa)
-    timestamp? (encypted also? part of original message?)
-    signature? (hash of message signed with senders private key?)
+    sent in json format? plaintext also in json format?
+    plaintext includes timestamp, sender's name, message
+    message as sent includes:
+        encrypt(plaintext)
+        sign(hash(plaintext))
+        sign(hash(encrypt(plaintext)))
+        sender's name
 
 Client
     End-to-end encryption: sender's client encrypts message for reciever, server never sees plaintext
     Web interface
 
 Server
-    methods (authenticate user before each? could send random number for them to sign)
-        get users
-            send back list of users
-            and current status? logged on or no- keep track of last time each user requested other users
-        get new messages
-        get previously read messages
+    methods
+        get list of all users
+        provide username of requesting user, server returns list (+ nonce) encrypted with their public key
+        update
+            get new messages
+            get which users are currently online
+            do this every n seconds
+            server remembers how long since each user checked, and uses this to keep track of who's online
+        get old messages
+            not all at once
+            last n messages?
+            by date?
         send message
-            get confirmation? (checksum?)
     What library for networking?
         wsgi
         flask
     store user information, messages in a database- use sqlite3
-    users added manually to the server?
-    How much do we trust the server? Server signs communications so we know it's the right one
-        Could be a key server, provide list of usernames to send messages to
-        ... but then server could perform man in the middle attack, alternatively verify keys manually
+    users added manually to the server for now
 
 From Rayyan:
   -Message Format: [timestamp] username : message
