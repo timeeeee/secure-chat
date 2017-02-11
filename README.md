@@ -71,3 +71,21 @@ crypt_utils
 crypt_utils.py includes a number of functions to make it easy to apply the
 encryption and hash algorithms.
 
+
+Database
+--------
+
+The database will handle two main types of resources, users and messages.
+
+A user has a username, a salt, their password hash (really their password,
+hashed, plus a salt, hashed again), their private key encrypted with their
+(stretched) password, and their public key.
+
+A message has a timestamp, session key, message body, and signature.
+
+
+Setup
+-----
+
+So that authentication can happen securely, the server script will have to be
+run by apache, and served over SSL.
