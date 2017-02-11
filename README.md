@@ -72,6 +72,13 @@ crypt_utils.py includes a number of functions to make it easy to apply the
 encryption and hash algorithms.
 
 
+Testing
+-------
+
+Tests in tests.py can be run using the nosetests framework. "pip install nose"
+if necessary, then run "nosetests" from the root folder of the project.
+
+
 Database
 --------
 
