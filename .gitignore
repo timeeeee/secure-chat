@@ -7,7 +7,6 @@
 
 # node stuff
 web-client/node_modules
-web-client/package-lock.json
 
 # compiled js
 web-client/build/*
